@@ -273,10 +273,13 @@ class BoxEvaluator(LocalizationEvaluator):
         best_iou_box_ind = np.argmax(multiple_iou, axis=0)
         self.best_pred_boxes[image_id] = boxes_at_thresholds[best_iou_box_ind]
 
-        label = np.load(os.path.join('/'.join(self.scoremap_root.split('/')[:-1]), 'image_gts', image_id + '.npy'))
-        cls_path = os.path.join('/'.join(self.scoremap_root.split('/')[:-1]), 'predicts', image_id + '.npy')
+        # label = np.load(os.path.join('/'.join(self.scoremap_root.split('/')[:-1]), 'image_gts', image_id + '.npy'))
+        # cls_path = os.path.join('/'.join(self.scoremap_root.split('/')[:-1]), 'predicts', image_id + '.npy')
+        base_path = os.path.join(os.path.split(self.scoremap_root)[0])
+        label_path = os.path.join(base_path, 'image_gts', image_id + '.npy')
+        cls_path = os.path.join(base_path, 'predicts', image_id + '.npy')
+        label = np.load(label_path)
         pred_label = np.load(cls_path)
-    
 
         idx = 0
         sliced_multiple_iou = []

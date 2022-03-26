@@ -530,6 +530,8 @@ class Trainer(object):
         if split == 'val':
             self.tb_writer.add_scalar('Val/CLS Acc', accuracy, global_step=self.epoch)
             self.tb_writer.add_scalar('Val/MaxBoxAccV2', localization, global_step=self.epoch)
+            self.tb_writer.add_scalar('Val/top_1', top_1, global_step=self.epoch)
+            self.tb_writer.add_scalar('Val/gt_known', gt_known, global_step=self.epoch)
 
         #if self.args.dataset_name in ('CUB', 'ILSVRC'):
         #    for idx, IOU_THRESHOLD in enumerate(self.args.iou_threshold_list):
